@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
         //获得控件
         WebView webView = (WebView) findViewById(R.id.wv_webview);
         //访问网页
-        webView.loadUrl("https://www.baidu.com");
+        webView.loadUrl("http://localhost:8080");
         //系统默认会通过手机浏览器打开网页，为了能够直接通过WebView显示网页，则必须设置
 
         webView.setWebViewClient(new WebViewClient(){
