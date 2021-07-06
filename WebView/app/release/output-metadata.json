@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "cn.imsty.mywebview",
+  "applicationId": "com.example.app",
   "variantName": "processReleaseResources",
   "elements": [
     {
