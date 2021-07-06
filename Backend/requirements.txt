@@ -5,3 +5,8 @@ itsdangerous==2.0.1
 Jinja2==3.0.1
 MarkupSafe==2.0.1
 Werkzeug==2.0.1
+
+numpy~=1.21.0
+opencv-python~=3.4.2.16
+imutils~=0.5.4
+matplotlib~=3.4.2
