@@ -20,8 +20,8 @@ def get_content():
     img_r = data["img_r"]
     img_l = img_l.split(",", 1)[1]
     img_r = img_r.split(",", 1)[1]
-    result = panorama_stitching.cv_stitching(img_l, img_r)
-    return jsonify({'result': result})
+    (result1, result2) = panorama_stitching.cv_stitching(img_l, img_r)
+    return jsonify({'result1': result1, "result2": result2 })
 
 
 if __name__ == '__main__':

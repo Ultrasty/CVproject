@@ -18,4 +18,6 @@ def cv_stitching(img_l, img_r):
     (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
     image = cv2.imencode('.jpg', result)[1]
     base64_data = str(base64.b64encode(image))[2:-1]
-    return base64_data
+    image2 = cv2.imencode('.jpg', vis)[1]
+    base64_data2 = str(base64.b64encode(image2))[2:-1]
+    return (base64_data, base64_data2)

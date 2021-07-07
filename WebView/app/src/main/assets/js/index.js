@@ -3,10 +3,9 @@ var vm = new Vue({
     data: {
         imgs: [],
         addShow: true,
-        mltoast: {
-            show: false,
-            text: ''
-        }
+        resultShow: false,
+        result: [],
+
     },
     mounted: function () {
         this.login();
@@ -60,52 +59,30 @@ var vm = new Vue({
         // 上传到后台
         submit: function () {
 
-            var that = this;
+            let that = this;
             console.log(this.imgs);
             console.log(typeof this.imgs);
-            console.log(JSON.stringify({"img_l":this.imgs[0],"img_r":this.imgs[1]}));
             $.ajax({
                 url: 'http://127.0.0.1:5000/index',
                 dataType: 'json',
                 type: 'POST',
                 // data: JSON.stringify(that.imgs),
-                data: JSON.stringify({"img_l":this.imgs[0],"img_r":this.imgs[1]}),
+                data: JSON.stringify({"img_l": this.imgs[0], "img_r": this.imgs[1]}),
                 processData: false,
                 contentType: false,
                 success: function (res) {
                     console.log(res)
+                    that.resultShow = true;
+                    let result1 = "data:image/jpeg;base64,"+res["result1"];
+                    that.result.push(result1)
+                    let result2 = "data:image/jpeg;base64,"+res["result2"];
+                    that.result.push(result2)
                 },
+
                 error: function () {
                     console.log('error')
                 }
             })
-
-            // axios({
-            //     url: 'http://test.360guanggu.com/xyzl/weixin.php/Member/question_detail',
-            //     method:'post',
-            //     data: {
-            //         type: 1,
-            //         image: that.imgs,
-            //         question:'33333',
-            //         is_anonym:1
-            //     },
-            //     headers: {"Content-Type": "multipart/form-data"}
-            // })
-            // .then(function(res) {
-            //     console.log(res)
-            // })
-            // .catch(function(error) {
-            //     console.log(error);
-            // });
-        },
-        // toast
-        // toast:function(text){
-        //     this.mltoast.text = text;
-        //     this.mltoast.show = true;
-        //     setTimeout(() => {
-        //       this.mltoast.show = false;
-        //     }, 1500)
-        // }
-
+        }
     }
 })

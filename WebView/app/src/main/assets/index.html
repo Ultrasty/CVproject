@@ -33,7 +33,13 @@
 
     <button class="btn-submit" @click="submit">提交</button>
     <!-- Toast -->
-    <div v-show="mltoast.show" class="toast">{{mltoast.text}}</div>
+    <div v-show="resultShow" class="toast">
+        <h4>拼接后图片</h4>
+        <img :src=result[0] class="resultImg" alt="">
+        <h4>关键点匹配</h4>
+        <img :src=result[1] class="resultImg"  alt="">
+    </div>
+
 </div>
 
 <script src="lib/jquery/jquery.min.js"></script>
