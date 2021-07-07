@@ -15,10 +15,11 @@ def hello_world():
 
 @app.route('/index', methods=['POST'])
 def get_content():
-
     data = json.loads(str(request.data, 'utf-8'))
     img_l = data["img_l"]
     img_r = data["img_r"]
+    img_l = img_l.split(",", 1)[1]
+    img_r = img_r.split(",", 1)[1]
     result = panorama_stitching.cv_stitching(img_l, img_r)
     return jsonify({'result': result})
 
