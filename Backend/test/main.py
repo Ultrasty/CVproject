@@ -53,7 +53,7 @@ def matchKeyPoints(keyPointsA, keyPointsB, featuresA, featuresB, ratio, reprojTh
 # 返回一系列的关键点
 def detectAndDescribe(image):
     # detect and extract features from the image
-    descriptor = cv2.xfeatures2d.SIFT_create()
+    descriptor = cv2.SIFT_create()
     (keyPoints, features) = descriptor.detectAndCompute(image, None)
     keyPoints = np.float32([kp.point for kp in keyPoints])
     # return a tuple of keyPoints and features

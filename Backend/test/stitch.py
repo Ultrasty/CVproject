@@ -40,7 +40,7 @@ class Stitcher:
 
         # 检查我们使用的是否是penCV3.x
         if self.isv3:
-            sift = cv.xfeatures2d.SIFT_create()
+            sift = cv.SIFT_create()
             (kps, des) = sift.detectAndCompute(img, None)
         else:
             sift = cv.FastFeatureDetector_create('SIFT')

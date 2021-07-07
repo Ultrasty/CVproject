@@ -63,7 +63,7 @@ var vm = new Vue({
             console.log(this.imgs);
             console.log(typeof this.imgs);
             $.ajax({
-                url: 'http://127.0.0.1:5000/index',
+                url: 'http://10.0.2.2:5000/index',
                 dataType: 'json',
                 type: 'POST',
                 // data: JSON.stringify(that.imgs),

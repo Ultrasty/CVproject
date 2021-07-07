@@ -51,7 +51,7 @@ class Stitcher:
 
         # check to see if we are using OpenCV 3.X
         # detect and extract features from the image
-        descriptor = cv2.xfeatures2d.SIFT_create()
+        descriptor = cv2.SIFT_create()
         (kps, features) = descriptor.detectAndCompute(image, None)
 
         # otherwise, we are using OpenCV 2.4.X

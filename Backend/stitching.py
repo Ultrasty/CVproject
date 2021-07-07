@@ -18,14 +18,22 @@ import matplotlib.pyplot as plt
 
 # load the two images and resize them to have a width of 400 pixels
 # (for faster processing)
-imageA = cv2.imread("images/bryce_left_01.png")
-imageB = cv2.imread("images/bryce_right_01.png")
-imageA = imutils.resize(imageA, width=400)
-imageB = imutils.resize(imageB, width=400)
+imageA = cv2.imread("1.jpg")
+imageB = cv2.imread("2.jpg")
+imageC = cv2.imread("3.jpg")
+imageA = imutils.resize(imageA, height=400)
+imageB = imutils.resize(imageB, height=400)
+imageC = imutils.resize(imageC, height=400)
 
 # stitch the images together to create a panorama
 stitcher = Stitcher()
 (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
 print(result)
 cv2.imshow('result', result)
+
+
+(result, vis) = stitcher.stitch([result, imageC], showMatches=True)
+cv2.imshow('result', result)
+
+
 cv2.waitKey(0)
