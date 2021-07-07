@@ -26,7 +26,8 @@
             </div>
         </div>
 
-        <button class="btn-submit" @click="submit">提交</button>
+        <button class="btn-submit" @click="submit">无圆柱投影全景拼接</button>
+        <button class="btn-submit" @click="submit360" style="margin-top: 20px;">360°全景拼接<br/>(只接受png文件)</button>
         <button class="btn-submit" style="margin-top: 20px;" @click="refresh">清空</button>
         <!-- Toast -->
         <div v-show="resultShow" class="toast" style="text-align: center;">

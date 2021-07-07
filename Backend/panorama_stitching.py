@@ -16,8 +16,13 @@ def cv_stitching(img_l, img_r):
     imageB = imutils.resize(imageB, height=800)
     stitcher = Stitcher()
     (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
+    
+    result = np.rot90(result)
+    result = np.rot90(result)
+    result = np.rot90(result)
     image = cv2.imencode('.jpg', result)[1]
     base64_data = str(base64.b64encode(image))[2:-1]
+    
     image2 = cv2.imencode('.jpg', vis)[1]
     base64_data2 = str(base64.b64encode(image2))[2:-1]
     return (base64_data, base64_data2)

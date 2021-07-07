@@ -110,6 +110,38 @@ var vm = new Vue({
             location.reload();
         },
 
+        submit360: function(){
+            let that = this;
+            this.loadingShow = true;
+            $.ajax({
+                //url: 'http://10.0.2.2:8000/index',
+                //url: 'http://localhost:8000/index',
+                url: 'http://imsty.cn:8000/index',
+                dataType: 'json',
+                type: 'POST',
+                // data: JSON.stringify(that.imgs),
+                data: JSON.stringify(this.imgs),
+                processData: false,
+                contentType: false,
+                success: function (res) {
+                    console.log(res)
+                    that.resultShow = true;
+                    let result1 = "data:image/jpeg;base64,"+res["result1"];
+                    that.result.push(result1);
+                    let result2 = "data:image/jpeg;base64,"+res["result2"];
+                    that.result.push(result2);
+                    that.loadingShow = false;
+                    alert("拼接成功")
+                },
+
+                error: function () {
+                    console.log('error')
+                    that.loadingShow = false;
+                    alert("请求失败");
+                }
+            })
+        },
+
         // 上传到后台
         submit: function () {
 
@@ -117,8 +149,8 @@ var vm = new Vue({
             this.loadingShow = true;
             $.ajax({
                 //url: 'http://10.0.2.2:5000/index',
-                url: 'http://localhost:5000/index',
-                //url: 'http://imsty.cn:5000/index',
+                //url: 'http://localhost:5000/index',
+                url: 'http://imsty.cn:5000/index',
                 dataType: 'json',
                 type: 'POST',
                 // data: JSON.stringify(that.imgs),
