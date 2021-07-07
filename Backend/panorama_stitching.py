@@ -12,8 +12,8 @@ def cv_stitching(img_l, img_r):
     imageA = cv2.imdecode(img_l_array, cv2.COLOR_BGR2RGB)  # 转换Opencv格式
     img_r_array = np.frombuffer(img_r_decode, np.uint8)  # 转换np序列
     imageB = cv2.imdecode(img_r_array, cv2.COLOR_BGR2RGB)  # 转换Opencv格式
-    imageA = imutils.resize(imageA, width=400)
-    imageB = imutils.resize(imageB, width=400)
+    imageA = imutils.resize(imageA, height=800)
+    imageB = imutils.resize(imageB, height=800)
     stitcher = Stitcher()
     (result, vis) = stitcher.stitch([imageA, imageB], showMatches=True)
     image = cv2.imencode('.jpg', result)[1]

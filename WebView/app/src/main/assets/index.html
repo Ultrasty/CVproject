@@ -1,51 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"/>
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>H5图片压缩上传</title>
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
-<div id="jddk" class="jddk">
-    <!-- upload -->
-    <div class="upload flex flex-wrap">
-        <div v-for="(item,index) in imgs" class="upload-item">
-            <img class="upload-item-img" :src="item" alt="">
-            <img class="upload-item-del"
-                 @click="delImg(index)"
-                 src="images/icon-del.png" alt="">
+    <div id="jddk" class="jddk">
+        <!-- upload -->
+        <div class="upload flex flex-wrap">
+            <div v-for="(item,index) in imgs" class="upload-item">
+                <img class="upload-item-img" :src="item" alt="">
+                <img class="upload-item-del" @click="delImg(index)" src="images/icon-del.png" alt="">
+            </div>
+            <div v-show="addShow" class="upload-item">
+                <img class="upload-item-img" src="images/add.png" alt="">
+                <form id="form" enctype="multipart/form-data">
+                    <input class="upload-input" accept="image/*" multiple required type="file" @change="chooseImg">
+                </form>
+            </div>
         </div>
-        <div v-show="addShow" class="upload-item">
-            <img class="upload-item-img" src="images/add.png" alt="">
-            <form id="form" enctype="multipart/form-data">
-                <input class="upload-input"
-                       accept="image/*"
-                       multiple
-                       required
-                       type="file"
-                       @change="chooseImg">
-            </form>
+
+        <button class="btn-submit" @click="submit">提交</button>
+        <button class="btn-submit" style="margin-top: 20px;" @click="refresh">清空</button>
+        <!-- Toast -->
+        <div v-show="resultShow" class="toast">
+            <h4>拼接后图片</h4>
+            <img :src=result[0] class="resultImg" alt="">
+            <h4>关键点匹配</h4>
+            <img :src=result[1] class="resultImg" alt="">
         </div>
+
+
+
+
+        <div v-show="loadingShow"
+            style="display: flex;position: absolute;width: 100vw;height:100vh;background-color: rgba(0,0,0,0.15);">
+            <div style="width: 30vw;height: 30vw;margin: auto;">
+                <svg version="1.1" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"
+                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+                    <g>
+                        <defs>
+                            <clipPath id="clip">
+                                <path d="M 50 50 L 35 0 L 65 0 z" />
+                            </clipPath>
+
+                            <ellipse id="MyEllipse" clip-path="url(#clip)" cx="50" cy="50" rx="40" ry="40"
+                                style="fill:none; stroke:#aaa" stroke-width="10" />
+                        </defs>
+
+
+                        <use xlink:href="#MyEllipse" />
+                        <use xlink:href="#MyEllipse" transform="rotate(40 50 50)" />
+                        <use xlink:href="#MyEllipse" transform="rotate(80 50 50)" />
+                        <use xlink:href="#MyEllipse" transform="rotate(120 50 50)" />
+                        <use xlink:href="#MyEllipse" transform="rotate(160 50 50)" />
+                        <use xlink:href="#MyEllipse" transform="rotate(200 50 50)" />
+                        <use xlink:href="#MyEllipse" transform="rotate(240 50 50)" />
+                        <use xlink:href="#MyEllipse" transform="rotate(280 50 50)" />
+                        <use xlink:href="#MyEllipse" transform="rotate(320 50 50)" />
+
+
+                        <ellipse clip-path="url(#clip)" cx="50" cy="50" rx="40" ry="40" style="fill:none; stroke:black"
+                            stroke-width="12">
+                            <animateTransform attributeName="transform" attributeType="XML" type="rotate"
+                                values="0 50 50; 40 50 50; 80 50 50; 120 50 50; 160 50 50; 200 50 50; 240 50 50; 280 50 50; 320 50 50; 360 50 50"
+                                dur="1s" repeatCount="indefinite" additive="replace" calcMode="linear" fill="freeze" />
+                        </ellipse>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
     </div>
 
-    <button class="btn-submit" @click="submit">提交</button>
-    <!-- Toast -->
-    <div v-show="resultShow" class="toast">
-        <h4>拼接后图片</h4>
-        <img :src=result[0] class="resultImg" alt="">
-        <h4>关键点匹配</h4>
-        <img :src=result[1] class="resultImg"  alt="">
-    </div>
-
-</div>
-
-<script src="lib/jquery/jquery.min.js"></script>
-<script src="lib/vue/vue.min.js"></script>
-<script src="lib/vue/axios.min.js"></script>
-<script src="lib/canvasResize/canvasResize.min.js"></script>
-<script src="js/index.js"></script>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/vue/vue.min.js"></script>
+    <script src="lib/vue/axios.min.js"></script>
+    <script src="lib/canvasResize/canvasResize.min.js"></script>
+    <script src="js/index.js"></script>
 </body>
+
 </html>

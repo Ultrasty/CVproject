@@ -4,6 +4,7 @@ var vm = new Vue({
         imgs: [],
         addShow: true,
         resultShow: false,
+        loadingShow: false,
         result: [],
 
     },
@@ -56,14 +57,20 @@ var vm = new Vue({
 
 
         },
+
+        refresh: function(){
+            location.reload();
+        },
+
         // 上传到后台
         submit: function () {
 
             let that = this;
-            console.log(this.imgs);
-            console.log(typeof this.imgs);
+            this.loadingShow = true;
             $.ajax({
                 url: 'http://10.0.2.2:5000/index',
+                //url: 'http://localhost:5000/index',
+                //url: 'http://imsty.cn:5000/index',
                 dataType: 'json',
                 type: 'POST',
                 // data: JSON.stringify(that.imgs),
@@ -74,13 +81,15 @@ var vm = new Vue({
                     console.log(res)
                     that.resultShow = true;
                     let result1 = "data:image/jpeg;base64,"+res["result1"];
-                    that.result.push(result1)
+                    that.result.push(result1);
                     let result2 = "data:image/jpeg;base64,"+res["result2"];
-                    that.result.push(result2)
+                    that.result.push(result2);
+                    that.loadingShow = false;
                 },
 
                 error: function () {
                     console.log('error')
+                    that.loadingShow = false;
                 }
             })
         }
