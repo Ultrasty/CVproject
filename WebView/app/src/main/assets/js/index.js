@@ -62,13 +62,14 @@ var vm = new Vue({
 
             var that = this;
             console.log(this.imgs);
-            console.log(typeof this.imgs)
-
+            console.log(typeof this.imgs);
+            console.log(JSON.stringify({"img_l":this.imgs[0],"img_r":this.imgs[1]}));
             $.ajax({
-                url: 'http://10.0.2.2:5000/upload',
+                url: 'http://127.0.0.1:5000/index',
                 dataType: 'json',
                 type: 'POST',
-                data: JSON.stringify(that.imgs),
+                // data: JSON.stringify(that.imgs),
+                data: JSON.stringify({"img_l":this.imgs[0],"img_r":this.imgs[1]}),
                 processData: false,
                 contentType: false,
                 success: function (res) {
